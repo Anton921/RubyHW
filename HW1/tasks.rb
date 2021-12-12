@@ -176,11 +176,9 @@ puts 'Завдання 17'
 m1 = [1, 2, 3, 4, 5]
 k = 0
 m1.each_index do |index|
-  if index > 1 && index < m1.size - 1
-    if m1[index] > m1[index - 1] && m1[index] > m1[index + 1]
-      k += 1
-    end
-  end
+  next unless index > 1 && index < m1.size - 1
+
+  k += 1 if m1[index] > m1[index - 1] && m1[index] > m1[index + 1]
 end
 puts k
 puts '-----------------------------------'
@@ -190,11 +188,9 @@ puts 'Завдання 18'
 m1 = [1, 2, 3, 4, 5]
 k = 0
 m1.each_index do |index|
-  if index != 0 && index != m1.size
-    if m1[index - 1] && m1[index] < m1[index - 1] && m1[index + 1] && m1[index] < m1[index + 1]
-      k += 1
-    end
-  end
+  next unless index != 0 && index != m1.size
+
+  k += 1 if m1[index - 1] && m1[index] < m1[index - 1] && m1[index + 1] && m1[index] < m1[index + 1]
 end
 puts k
 puts '-----------------------------------'
