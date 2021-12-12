@@ -1,0 +1,40 @@
+require 'sanitize'
+
+module Hw3Gem
+  def makeHTML(stats, hp, info, bypass_html = true)
+    file = File.open('index.html', 'w')
+
+    info = info.gsub!(/[<>]/, '') if bypass_html == false
+
+    file.puts("<!DOCTYPE html>
+    <head>
+        <title> Your pet </title>
+    </head>
+    <body>
+        <h1>Показники</h1>
+        <hr/>")
+
+    if stats >= 161 && hp == 1
+      file.puts('<h1>😀</h1>')
+    elsif stats < 161 && hp == 1
+      file.puts('<h1>😐</h1>')
+    else
+      file.puts('<h1>💀</h1>')
+    end
+
+    file.puts("<h3>")
+    file.puts(info)
+    file.write("
+      </h3>
+    </body>
+    </html>
+      ")
+
+    Sanitize.document(file,
+      :allow_doctype => true,
+      :elements => ['html']
+    )
+
+    file.close
+  end
+end
