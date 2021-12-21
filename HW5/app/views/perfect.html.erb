@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/public/index.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style media="screen">
+      body{
+          background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+          background-size: 400% 400%;
+          animation: gradient 15s ease infinite;
+      }
+      @keyframes gradient {
+          0% {
+              background-position: 0% 50%;
+          }
+          50% {
+              background-position: 100% 50%;
+          }
+          100% {
+              background-position: 0% 50%;
+          }
+      }
+    </style>
+    </head>
+  <body>
+
+      <h4 class="body_index">Ви прокидаетесь у своїй квартирі.</h4>
+      <h4 class="body_index">Ви відчуваєте мутність думок.</h4>
+      <h4 class="body_index">Поруч з вами лежить <%= name %>.</h4>
+      <h4 class="body_index">Попри все, ви раді що провели чудовий вечір.</h4>
+
+    <p class="img">
+    <img src="https://cdn.fishki.net/upload/post/2020/07/07/3363602/9806355eccae36f2160fe36d2217f145.jpg" width="400" height="444" alt="doggy">
+    </p>
+  </body>
+</html>

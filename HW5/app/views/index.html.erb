@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Game</title>
+    <style>
+      body {
+        background: url(https://static-cse.canva.com/blob/194880/Green-and-Yellow-Lemon-Fruit-Pattern-Zoom-Virtual-Background.png);
+      }
+    </style>
+    <link rel="stylesheet" href="/public/index.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  </head>
+  <body class="body_index">
+
+  <h1> <%= name %> сидить поруч з вами</h1>
+
+  <img src="https://anews.com/upload/post/2020/11/01/131028818/gallery/941764348.png" width="200" height="222" alt="doggy"/>
+
+
+  <h3>Ситість     <%= get('hangry') %></h3>
+  <h3>Сонливість  <%= get('sleep') %></h3>
+  <h3>Щастя       <%= get('happy') %></h3>
+  <h3>Оп'яніння   <%= get('drink') %></h3>
+
+<div class="row" >
+  <form action="/change" method="get">
+
+    <button type="submit" class="btn btn-outline-dark" name="hangry" value="hangry">Погодувати</button>
+
+    <button type="submit" class="btn btn-outline-dark" name="sleep" value="sleep">Покласти спати</button>
+
+    <button type="submit" class="btn btn-outline-dark" name="happy" value="happy">Погратися</button>
+
+    <button type="submit" class="btn btn-outline-dark" name="bear" value="bear">По пивку?</button>
+
+    <button type="submit" class="btn btn-outline-dark" name="vodka" value="vodka">По 50 грам?</button>
+
+    <button type="submit" class="btn btn-outline-dark" name="wiskie" value="wiskie">Посмакувати віскі</button>
+
+  </form>
+
+  <form action="/exit" method="get">
+
+    <button type="submit" class="btn btn-outline-dark" name="" value="">Наругати <%= name %> </button>
+
+  </form>
+
+  <form action="/help" method="get">
+
+    <button type="submit" class="btn btn-outline-dark" name="" value="">Help</button>
+
+  </form>
+</div>
+</body>
+</html>
