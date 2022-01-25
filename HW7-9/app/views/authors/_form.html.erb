@@ -1,0 +1,14 @@
+<% @author = current_author %>
+<%= form_with(model: @author) do |form| %>
+
+  <div class="form-control">
+    <%= image_tag("#{@author.image}") %>
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, class:  "form-control form-control-lg" %>
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name , class: "form-control form-control-lg"  %>
+    <%= form.label :avatar_url%>
+    <%= form.text_field :avatar_url, class: "form-control form-control-lg"  %>
+    <%= form.submit class: "btn btn-outline-primary me-2" %>
+  </div>
+<% end %>

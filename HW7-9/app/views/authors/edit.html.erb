@@ -1,42 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h1>Editing</h1>
 
-<h1>Edit Comment</h1>
+<%= render 'authors/form', author: @author %>
 
-<%= form_for @author do |form| %>
-  <% if @author.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% @author.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-
-    <p>
-    <div class="field">
-      <%= form.label :first_name %>
-      <%= form.text_field :first_name, placeholder: "First Name" %>
-    </div>
-  </p>
-
-  <p>
-    <div class="field">
-      <%= form.label :last_name %>
-      <%= form.text_field :last_name, placeholder: "Last Name" %>
-    </div>
-  </p>
-
-  <p>
-    <div class="field">
-      <%= form.label :image %>
-      <%= form.text_field :image %>
-    </div>
-  </p>
-
-  <% end %>
-
-    <div class="pt-2">
-      <%= link_to 'Back', post_path(@post), class: 'btn btn-light ml-3' %>
-    </div>
-<% end %>
+<%= link_to 'Show', @author %> |
+<%= link_to 'Back', posts_path %>

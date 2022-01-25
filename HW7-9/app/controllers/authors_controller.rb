@@ -17,7 +17,7 @@ class AuthorsController < ApplicationController
         end
     end
 
-    def show_you
+    def show
       @author = Author.find(session[:author_id])
     end
 
