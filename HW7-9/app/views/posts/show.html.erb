@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag("#{@post.image}") %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @post.author.last_name %>
+  <%= image_tag("#{@post.author.image}", height: '32', width: '32') %>
+</p>
+
+<% if @post.author_id == session[:author_id] %>
+  <p>
+    <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-black' %>
+  </p>
+<% end %>
+
+<p>
+  <strong>Comments:</strong>
+</p>
+
+<div>
+  <%= render 'posts/show_publ_or_unpubl_comments' %>
+</div>
+
+<div>
+  <%= render 'comments/comments' %>
+</div>
+
+<h4>Add Comment</h4>
+
+<div>
+  <%= render 'comments/form' %>
+</div>
+<% if @post.author_id == session[:author_id] %>
+  <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-black' %> |
+<% end %>
+<%= link_to 'Back', posts_path, class: 'btn btn-black' %>

@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag("#{@author.image}") %>
+</p>
+
+<p>
+  <strong>You:</strong>
+  <%= @author.full_name %>
+</p>
+
+<% if @post.author_id == session[:author_id] %>
+  <%= link_to 'Edit', edit_author_path(@author), class: 'btn btn-black' %> |
+<% end %>
+<%= link_to 'Back', posts_path, class: 'btn btn-black' %>

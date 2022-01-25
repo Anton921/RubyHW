@@ -1,0 +1,58 @@
+<% if params[:status] == {"status"=>"0"} %>
+  <h4>Unpublished comments</h4>
+  <% @post.comments.unpublished.each do |comment| %>
+    <% if comment.save %>
+      <div>
+        <div class="d-flex">
+          <div>
+            <%= "#{comment.author.first_name}:" %>
+            <%= image_tag("#{comment.author.image}", height: '32', width: '32') %>
+          </div>
+          <div>
+            <%= simple_format(comment.body) %>
+          </div>
+          <div>
+            <% if comment.author_id == session[:author_id] %>
+              <%= link_to "Publish", post_comment_path(comment.post, comment), method: :patch, class: 'btn btn-black' %>
+            <% end %>
+          </div>
+        </div>
+        <% if comment.edited != 0 %>
+          <h4> Edited <h4>
+        <% end %>
+        <% if comment.author_id == session[:author_id] %>
+          <% if comment.created_at >= 1.hour.ago && comment.edited == 0 %>
+            <%= link_to 'Edit', edit_post_comment_path(comment.post, comment), class: 'btn btn-black' %> |
+          <% end %>
+          <%= link_to 'Destroy', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-black'%>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+  <h4>Published comments</h4>
+  <% @post.comments.published.each do |comment| %>
+    <% if comment.save %>
+      <div>
+        <div class="d-flex">
+          <div>
+            <%= "#{comment.author.first_name}:" %>
+            <%= image_tag("#{comment.author.image}", height: '32', width: '32') %>
+          </div>
+          <div>
+            <%= simple_format(comment.body) %>
+          </div>
+        </div>
+        <% if comment.edited != 0 %>
+          <h4> Edited <h4>
+        <% end %>
+        <% if comment.author_id == session[:author_id] %>
+          <% if comment.created_at >= 1.hour.ago && comment.edited == 0 %>
+            <%= link_to 'Edit', edit_post_comment_path(comment.post, comment), class: 'btn btn-black' %> |
+          <% end %>
+          <%= link_to 'Destroy', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-black'%>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

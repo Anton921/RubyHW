@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'All Posts', posts_path, class: 'btn btn-primary' %>
+
+<h1>Posts</h1>
+
+<dl>
+  <dt></dt>
+</dl>
+
+<table>
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td>
+          <dl>
+            <dt> <%= post.title %> </dt>
+            <dt> <%= post.author.last_name %> </dt>
+            <dt> <%= post.created_at %> </dt>
+            <dt> Views: <%= post.counter_of_view %> </dt>
+          </dl>
+        </td>
+        <td>
+          <%= image_tag("#{post.image}") %>
+        </td>
+        <td>
+          <%= link_to 'Show', post, class: 'btn btn-primary' %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-black' %>
+        </td>
+        <td>
+          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-black' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
