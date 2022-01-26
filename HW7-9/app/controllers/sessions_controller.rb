@@ -1,11 +1,11 @@
 class SessionsController < ApplicationController
   def create
     author = Author.find_by_email(params[:email])
-    if author && author.authenticate(params[:password])
+    if author&.authenticate(params[:password])
       session[:author_id] = author.id
-      redirect_to root_url, notice: "Logged in!"
+      redirect_to root_url, notice: 'Logged in!'
     else
-      flash.now.alert = "Email or password is invalid."
+      flash.now.alert = 'Email or password is invalid.'
     end
   end
 
@@ -15,6 +15,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:author_id] = nil
-    redirect_to root_url, notice: "Logged out!"
+    redirect_to root_url, notice: 'Logged out!'
   end
 end

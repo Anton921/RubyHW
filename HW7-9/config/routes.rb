@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   post 'posts/:id', to: 'posts#show'
 
-  get 'search', to: "posts#search"
+  get 'search', to: 'posts#search'
 
   resources :posts do
     resources :comments
