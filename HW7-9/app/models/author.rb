@@ -1,6 +1,7 @@
 class Author < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :authorcommentvotes, dependent: :destroy
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validate :password_requirements_are_met
   validates :password, length: { minimum: 8 }

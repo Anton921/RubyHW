@@ -7,12 +7,3 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
-
-5.times do
-  Author.create(
-    first_name: Faker::Name.unique.first_name,
-    last_name: Faker::Name.unique.last_name,
-    gender: Faker::Gender.type,
-    birthday: Faker::Date.birthday(min_age: 16, max_age: 100)
-  )
-end

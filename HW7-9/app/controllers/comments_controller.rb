@@ -55,6 +55,10 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:body, :status)
   end
 
+  def vote_params
+    params.require(:comment).permit(author_id: session[:author_id])
+  end
+
   def set_post
     @post = Post.find params[:post_id]
   end

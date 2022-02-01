@@ -9,41 +9,46 @@
   <dt></dt>
 </dl>
 
-<table class="center">
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td>
-          <dl>
-            <dt> <%= post.title %> </dt>
-            <dt> <%= post.author.last_name %> </dt>
-            <dt> <%= post.created_at %> </dt>
-            <dt> Views: <%= post.counter_of_view %> </dt>
-          </dl>
-        </td>
-        <td>
-          <%= image_tag("#{post.image}") %>
-        </td>
-        <% cook = cookies[:not_in] %>
-        <% cook = cook.to_i %>
-        <% if cook < 5 %>
+<div>
+  <table class="center">
+    <tbody>
+      <% @records.each do |post| %>
+        <tr>
           <td>
-            <%= link_to 'Show', post, class: 'btn btn-primary' %>
+            <dl>
+              <dt> <%= post.title %> </dt>
+              <dt> <%= post.author.last_name %> </dt>
+              <dt> <%= post.created_at %> </dt>
+              <dt> Views: <%= post.counter_of_view %> </dt>
+            </dl>
           </td>
-        <% else %>
-          <% cookies[:not_in] = 0 %>
           <td>
-            <%= link_to 'Show', post, data: { confirm: 'Log in please' }, class: 'btn btn-primary' %>
+            <%= image_tag("#{post.image}") %>
           </td>
-        <% end %>
-        <% if post.author_id == session[:author_id] %>
-          <td>
-            <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-black' %>
-          </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <% cook = cookies[:not_in] %>
+          <% cook = cook.to_i %>
+          <% if cook < 5 %>
+            <td>
+              <%= link_to 'Show', post, class: 'btn btn-primary' %>
+            </td>
+          <% else %>
+            <% cookies[:not_in] = 0 %>
+            <td>
+              <%= link_to 'Show', post, data: { confirm: 'Log in please' }, class: 'btn btn-primary' %>
+            </td>
+          <% end %>
+          <% if post.author_id == session[:author_id] %>
+            <td>
+              <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-black' %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+      <%== pagy_bootstrap_nav(@pagy) %>
+    </tbody>
+  </table>
+  <%== pagy_bootstrap_nav(@pagy) %>
+  <%== pagy_info(@pagy) %>
+</div>
 
 <br>

@@ -7,17 +7,18 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @posts = Post.all
+    @pagy, @records = pagy(@posts, items: 8)
   end
 
   def search
     @posts = Post.where('title||content LIKE?', "%#{params[:q]}%")
+    @pagy, @records = pagy(@posts, items: 8)
   end
 
   # GET /posts/1 or /posts/1.json
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @author = Author.find(params[:id])
   end
 
   # GET /posts/new

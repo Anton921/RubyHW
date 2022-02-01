@@ -11,6 +11,7 @@
           <div>
             <%= simple_format(comment.body) %>
           </div>
+          
           <div>
             <% if comment.author_id == session[:author_id] %>
               <%= link_to "Publish", post_comment_path(comment.post, comment), method: :patch, class: 'btn btn-black' %>
@@ -20,6 +21,19 @@
         <% if comment.edited != 0 %>
           <h4> Edited <h4>
         <% end %>
+
+        <div>
+          <%= link_to post_comment_like_path(@post, comment), remote: true, method: :post, class: "btn btn-black" do %>
+            <%= comment.authorcommentvotes.liked.count %> <%= (comment.authorcommentvotes.liked.count) == 1 ? 'Like' : 'Likes' %>
+          <% end %>
+          |
+          <%= comment.authorcommentvotes.count %> <%= (comment.authorcommentvotes.count) == 1 ? 'Vote' : 'Votes' %>
+          |
+          <%= link_to post_comment_dislike_path(@post, comment), remote: true, method: :post, class: "btn btn-black" do %>
+            <%= comment.authorcommentvotes.disliked.count %> <%= (comment.authorcommentvotes.disliked.count) == 1 ? 'Dislike' : 'Dislikes' %>
+          <% end %>
+        </div>
+
         <% if comment.author_id == session[:author_id] %>
           <% if comment.created_at >= 1.hour.ago && comment.edited == 0 %>
             <%= link_to 'Edit', edit_post_comment_path(comment.post, comment), class: 'btn btn-black' %> |
@@ -27,6 +41,8 @@
           <%= link_to 'Destroy', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-black'%>
         <% end %>
       </div>
+      <hr/>
+      </br>
     <% end %>
   <% end %>
 <% else %>
@@ -46,6 +62,21 @@
         <% if comment.edited != 0 %>
           <h4> Edited <h4>
         <% end %>
+
+        <div>
+          <%= link_to post_comment_like_path(@post, comment), method: :post, class: "btn btn-black" do %>
+            <%= comment.authorcommentvotes.liked.count %> <%= (comment.authorcommentvotes.liked.count) == 1 ? 'Like' : 'Likes' %>
+          <% end %>
+          |
+          <%= comment.authorcommentvotes.count %> <%= (comment.authorcommentvotes.count) == 1 ? 'Vote' : 'Votes' %>
+          |
+          <%= link_to post_comment_dislike_path(@post, comment), method: :post, class: "btn btn-black" do %>
+            <%= comment.authorcommentvotes.disliked.count %> <%= (comment.authorcommentvotes.disliked.count) == 1 ? 'Dislike' : 'Dislikes' %>
+          <% end %>
+          
+          <div><%# link_to 'Delete', post_comment_authorcommentvote_path(@post, comment), method: :delete, class: "btn btn-black" #%></div>
+        </div>
+
         <% if comment.author_id == session[:author_id] %>
           <% if comment.created_at >= 1.hour.ago && comment.edited == 0 %>
             <%= link_to 'Edit', edit_post_comment_path(comment.post, comment), class: 'btn btn-black' %> |
@@ -53,6 +84,8 @@
           <%= link_to 'Destroy', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-black'%>
         <% end %>
       </div>
+      <hr/>
+      </br>
     <% end %>
   <% end %>
 <% end %>

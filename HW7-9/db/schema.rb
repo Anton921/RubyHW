@@ -10,48 +10,64 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_125_104_244) do
+ActiveRecord::Schema.define(version: 2022_02_01_153432) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'authors', force: :cascade do |t|
-    t.string 'first_name'
-    t.string 'last_name'
-    t.string 'gender'
-    t.datetime 'birthday'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.string 'email'
-    t.string 'password_digest'
-    t.string 'image', default: 'https://workinnet.ru/wp-content/uploads/2019/06/lazy-load.jpg'
-    t.index ['email'], name: 'index_authors_on_email', unique: true
+  create_table "authorcommentvotes", force: :cascade do |t|
+    t.integer "status"
+    t.bigint "author_id", null: false
+    t.bigint "comment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_authorcommentvotes_on_author_id"
+    t.index ["comment_id"], name: "index_authorcommentvotes_on_comment_id"
   end
 
-  create_table 'comments', force: :cascade do |t|
-    t.text 'body'
-    t.integer 'status', default: 0
-    t.bigint 'author_id', null: false
-    t.bigint 'post_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'edited', default: 0
-    t.index ['author_id'], name: 'index_comments_on_author_id'
-    t.index ['post_id'], name: 'index_comments_on_post_id'
+  create_table "authors", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "gender"
+    t.datetime "birthday"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "email"
+    t.string "password_digest"
+    t.string "image", default: "https://workinnet.ru/wp-content/uploads/2019/06/lazy-load.jpg"
+    t.index ["email"], name: "index_authors_on_email", unique: true
   end
 
-  create_table 'posts', force: :cascade do |t|
-    t.string 'title'
-    t.text 'content'
-    t.string 'image'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.bigint 'author_id'
-    t.integer 'counter_of_view', default: 0
-    t.integer 'comments_count'
-    t.index ['author_id'], name: 'index_posts_on_author_id'
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.integer "status", default: 0
+    t.bigint "author_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "edited", default: 0
+    t.string "ancestry"
+    t.integer "parent_id"
+    t.index ["ancestry"], name: "index_comments_on_ancestry"
+    t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
-  add_foreign_key 'comments', 'authors'
-  add_foreign_key 'comments', 'posts'
-  add_foreign_key 'posts', 'authors'
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "author_id"
+    t.integer "counter_of_view", default: 0
+    t.integer "comments_count"
+    t.index ["author_id"], name: "index_posts_on_author_id"
+  end
+
+  add_foreign_key "authorcommentvotes", "authors"
+  add_foreign_key "authorcommentvotes", "comments"
+  add_foreign_key "comments", "authors"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "posts", "authors"
 end
