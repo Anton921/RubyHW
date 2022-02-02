@@ -1,0 +1,11 @@
+<div class="d-flex">
+  <%= button_to authorcommentvotes_path, params: { authorcommentvote: { comment_id: comment.id, status: :liked } }, remote: true, class: "btn btn-black" do %>
+    <%= comment.authorcommentvotes.liked.count %> <%= (comment.authorcommentvotes.liked.count) == 1 ? 'Like' : 'Likes' %>
+  <% end %>
+  |
+  <%= comment.authorcommentvotes.count %> <%= (comment.authorcommentvotes.count) == 1 ? 'Vote' : 'Votes' %>
+  |
+  <%= button_to authorcommentvotes_path, params: { authorcommentvote: { comment_id: comment.id, status: :disliked } }, remote: true, class: "btn btn-black" do %>
+    <%= comment.authorcommentvotes.disliked.count %> <%= (comment.authorcommentvotes.disliked.count) == 1 ? 'Dislike' : 'Dislikes' %>
+  <% end %>
+</div>

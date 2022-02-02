@@ -6,12 +6,10 @@ Rails.application.routes.draw do
 
   get 'search', to: 'posts#search'
 
+  post 'authorcommentvotes', to: 'authorcommentvotes#like_dislike'
+
   resources :posts do
-    resources :comments do
-      post 'like', to: 'authorcommentvotes#like'
-      post 'dislike', to: 'authorcommentvotes#dislike'
-      resources :authorcommentvotes
-    end
+    resources :comments
   end
   
   resources :sessions

@@ -1,0 +1,1 @@
+document.getElementById('<%= "votes-#{@vote.comment.id}" %>').innerHTML = "<%= j render 'authorcomentvotes/like_dislike', comment: @vote.comment %>";
