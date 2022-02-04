@@ -1,4 +1,4 @@
-<div class="d-flex">
+<div class="d-flex" id="votes">
   <%= button_to authorcommentvotes_path, params: { authorcommentvote: { comment_id: comment.id, status: :liked } }, remote: true, class: "btn btn-black" do %>
     <%= comment.authorcommentvotes.liked.count %> <%= (comment.authorcommentvotes.liked.count) == 1 ? 'Like' : 'Likes' %>
   <% end %>
