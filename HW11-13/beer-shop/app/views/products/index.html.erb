@@ -1,6 +1,10 @@
 <h1>Products</h1>
 
 <div>
+  <%= link_to 'New Product', new_product_path, class: 'btn btn-primary' %>
+</div>
+
+<div>
   <table>
     <tbody>
       <% @products.each do |products| %>
@@ -8,7 +12,8 @@
           <td>
             <dl>
               <dt> <%= products.title %> </dt>
-              <dt> <%= products.created_at %> </dt>
+              <dt> <%= products.content %> </dt>
+              <dt> <%= products.price %> </dt>
             </dl>
           </td>
           <td>

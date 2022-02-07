@@ -24,7 +24,6 @@ class CreateTables < ActiveRecord::Migration[7.0]
 
     add_reference :products, :category
 
-    add_reference :products, :user
-    add_foreign_key :products, :users
+    
   end
 end
