@@ -1,19 +1,19 @@
 class Product < ApplicationRecord
   belongs_to :category
 
-  def self.title_a_to_z
+  def self.title_clasick
     Product.order(:title)
   end
 
-  def self.title_z_to_a
+  def self.title_back
     Product.order(title: :desc)
   end
 
-  def self.price_low_to_high
+  def self.price_low
     Product.order(:price)
   end
 
-  def self.price_high_to_low
+  def self.price_high
     Product.order(price: :desc)
   end
 

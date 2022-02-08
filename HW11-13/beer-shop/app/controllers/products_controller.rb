@@ -1,20 +1,23 @@
 class ProductsController < ApplicationController
   before_action :set_categories
   
+  autocomplete :product, :title, :full => true
+
   def index
     @products = Product.all
-    @pagy, @records = pagy(@products, items: 10)
-    @products = if @order && @order == 'Name: A to Z'
-                  @products.title_a_to_z
-                elsif @order && @order == 'Name: Z to A'
-                  @products.title_z_to_a
-                elsif @order && @order == 'Price: High to Low'
-                  @products.price_high_to_low
-                elsif @order && @order == 'Price: Low to High'
-                  @products.price_low_to_high
+    @order = params.dig(:product, :order)
+    @products = if @order && @order == 'Name: +'
+                  @products.title_clasick
+                elsif @order && @order == 'Name: -'
+                  @products.title_back
+                elsif @order && @order == 'Price: High'
+                  @products.price_high
+                elsif @order && @order == 'Price: Low'
+                  @products.price_low
                 else
-                  @products.order(title: :asc)
+                  @products = Product.all
                 end
+    @pagy, @records = pagy(@products, items: 10)
   end
 
   def new
@@ -38,7 +41,7 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.where('title LIKE?', "%" + params[:q] + "%")
+    @products = Product.where('title LIKE?', "%" + params[:q] + "%").order('title')
     @pagy, @records = pagy(@products, items: 10)
   end
 

@@ -147,6 +147,8 @@ GEM
       activesupport (= 7.0.1)
       bundler (>= 1.15.0)
       railties (= 7.0.1)
+    rails-autocomplete (2.0.1)
+      rails (>= 4.0)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -218,6 +220,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.1)
+  rails-autocomplete
   rubocop
   sprockets-rails
   stimulus-rails

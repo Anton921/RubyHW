@@ -27,7 +27,7 @@
         <div class="collapse navbar-collapse">
           <%= link_to 'Home', products_path, class: 'btn btn-danger' %>
           <form class="d-flex" action="/search">
-            <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-lable="Search">
+            <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-lable="Search" data: {autocomplete: products_autocomplete_product_title_path}>
             <button class="btn btn-outline-success my-2 sm-0" type="submit">Search</button>
           </form>
         </div>
@@ -35,9 +35,9 @@
     </header>
 
     <main>
-      <div class="row">
+      <div class="row ">
         <div class="col-sm-3 col-12">
-          <nav class="nav nav-pills flex-column">
+          <nav class="nav nav-pills flex-column bg-dark">
             <%= render "categories/categories", collection: @categories %>
           </nav>
         </div>

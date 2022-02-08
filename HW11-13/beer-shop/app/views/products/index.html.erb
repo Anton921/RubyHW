@@ -3,11 +3,11 @@
   <input class="form-control mr-sm-2" name="max" type="float" placeholder="max" aria-lable="Search">
   <button class="btn btn-outline-success my-2 sm-0" type="submit">Search</button>
 </form>
-<div class="sorting-form">
+<div>
   <%= form_for('product', method: :get, :html => { :id => 'lead_form' }) do |f| %>
-    <div class="input-group">
+    <div>
       <%= f.label 'Sort by:', class: 'text-secondary me-2' %>
-      <%= f.select :order, ['Name: A to Z', 'Name: Z to A', 'Price: High to Low', 'Price: Low to High'], { selected: @order || 'Name: A to Z' }, { onchange: 'this.form.submit();' } %>
+      <%= f.select :order, ['Name: +', 'Name: -', 'Price: High', 'Price: Low'], { selected: @order || 'Name: A' }, { onchange: 'this.form.submit();' } %>
     </div>
   <% end %>
 </div>

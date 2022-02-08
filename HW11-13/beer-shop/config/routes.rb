@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get 'search_by_price', to: 'products#search_by_price'
 
-  resources :products
+  resources :products do
+    get :autocomplete_product_title, :on => :collection
+  end
   resources :categories
 end
