@@ -5,5 +5,10 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'products#index'
 
+  get 'search', to: 'products#search'
+
+  get 'search_by_price', to: 'products#search_by_price'
+
   resources :products
+  resources :categories
 end

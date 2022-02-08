@@ -1,0 +1,23 @@
+<h1>Products</h1>
+
+<div>
+  <%= link_to 'New Product', new_product_path, class: 'btn btn-primary' %>
+</div>
+
+<div class="container">
+  <div class="row row-cols-2">
+    <% @products.each do |records| %>
+      <div class="col">
+        <dl>
+          <dt> <%= records.title %> </dt>
+          <dt> <%= records.content %> </dt>
+          <dt> <%= records.price %> </dt>
+        </dl>
+        <%= image_tag("#{records.image}") %>
+        <%= link_to 'Show', records, class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+  <%== pagy_nav(@pagy) %>
+  <%== pagy_info(@pagy) %>
+</div>

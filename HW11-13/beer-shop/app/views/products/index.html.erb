@@ -1,26 +1,37 @@
+<form class="d-flex" action="/search_by_price">
+  <input class="form-control mr-sm-2" name="min" type="float" placeholder="min" aria-lable="Search">
+  <input class="form-control mr-sm-2" name="max" type="float" placeholder="max" aria-lable="Search">
+  <button class="btn btn-outline-success my-2 sm-0" type="submit">Search</button>
+</form>
+<div class="sorting-form">
+  <%= form_for('product', method: :get, :html => { :id => 'lead_form' }) do |f| %>
+    <div class="input-group">
+      <%= f.label 'Sort by:', class: 'text-secondary me-2' %>
+      <%= f.select :order, ['Name: A to Z', 'Name: Z to A', 'Price: High to Low', 'Price: Low to High'], { selected: @order || 'Name: A to Z' }, { onchange: 'this.form.submit();' } %>
+    </div>
+  <% end %>
+</div>
+
 <h1>Products</h1>
 
 <div>
   <%= link_to 'New Product', new_product_path, class: 'btn btn-primary' %>
 </div>
 
-<div>
-  <table>
-    <tbody>
-      <% @products.each do |products| %>
-        <tr>
-          <td>
-            <dl>
-              <dt> <%= products.title %> </dt>
-              <dt> <%= products.content %> </dt>
-              <dt> <%= products.price %> </dt>
-            </dl>
-          </td>
-          <td>
-            <%= image_tag("#{products.image}") %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="container">
+  <div class="row row-cols-2">
+    <% @products.each do |records| %>
+      <div class="col">
+        <dl>
+          <dt> <%= records.title %> </dt>
+          <dt> <%= records.content %> </dt>
+          <dt> <%= records.price %> </dt>
+        </dl>
+        <%= image_tag("#{records.image}") %>
+        <%= link_to 'Show', records, class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+  <%== pagy_nav(@pagy) %>
+  <%== pagy_info(@pagy) %>
 </div>
