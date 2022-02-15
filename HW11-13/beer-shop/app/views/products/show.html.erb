@@ -1,12 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
   <%= @product.title %>
 </p>
 
 <p>
-  <strong>Image:</strong>
   <%= image_tag("#{@product.image}") %>
 </p>
 
@@ -15,4 +13,5 @@
   <%= @product.content %>
 </p>
 
+<%= button_to '🍺Add to Cart🍺', product_order_items_path(@product), method: :post, class: 'btn btn-primary' %>
 <%= link_to 'Back', products_path, class: 'btn btn-black' %>

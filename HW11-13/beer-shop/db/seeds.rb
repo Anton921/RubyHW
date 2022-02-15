@@ -18,3 +18,33 @@ Category.create(
 Category.create(
   name: 'Нефельтрованое'
 )
+
+ProductCategory.create(
+  name: 'Крафтовое',
+  category_id: 1
+)
+
+ProductCategory.create(
+  name: 'Бутылированое',
+  category_id: 1
+)
+
+ProductCategory.create(
+  name: 'Крафтовое',
+  category_id: 2
+)
+
+ProductCategory.create(
+  name: 'Бутылированое',
+  category_id: 2
+)
+
+ProductCategory.create(
+  name: 'Крафтовое',
+  category_id: 3
+)
+
+ProductCategory.create(
+  name: 'Бутылированое',
+  category_id: 3
+)

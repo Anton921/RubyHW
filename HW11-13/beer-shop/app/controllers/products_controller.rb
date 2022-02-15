@@ -1,9 +1,12 @@
 class ProductsController < ApplicationController
   before_action :set_categories
+
+  before_action :authenticate_user!
   
   autocomplete :product, :title, :full => true
 
   def index
+    @categories = Category.all
     @products = Product.all
     @order = params.dig(:product, :order)
     @products = if @order && @order == 'Name: +'
@@ -26,6 +29,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @categories = Category.all
   end
 
   def create
