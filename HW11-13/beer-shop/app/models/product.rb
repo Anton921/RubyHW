@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :category
+  has_many :comments
 
   def self.title_clasick
     Product.order(:title)
@@ -20,4 +21,10 @@ class Product < ApplicationRecord
   def to_param
     "#{self.id}-#{self.title}"
   end
+
+  def rating
+    return 0 if comments.empty?
+    comments.sum(&:rating).to_f / comments.count
+  end
+  
 end

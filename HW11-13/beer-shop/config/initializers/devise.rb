@@ -26,6 +26,10 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
+  config.omniauth :github, 'a8002fd10645042396d6', '5c6466cb1cb0347ee54eaf867847034d94b7a4e5', scope: 'user,public_repo'
+  config.omniauth_path_prefix = "/users/auth"
+  config.omniauth_path_prefix = "/accounts/auth"
+
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 

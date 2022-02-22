@@ -65,15 +65,21 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  gem "letter_opener"
 end
 
 gem 'rubocop'
+
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 
 gem 'pagy'
 
 gem 'rails-autocomplete'
 
-gem 'devise'
+gem 'devise', github: 'heartcombo/devise'
+
+gem "omniauth-rails_csrf_protection"
 
 gem 'rails_admin', ['>= 3.0.0.rc', '< 4']
 

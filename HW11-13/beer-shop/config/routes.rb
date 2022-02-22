@@ -12,9 +12,11 @@ Rails.application.routes.draw do
 
   resources :products do
     get :autocomplete_product_title, :on => :collection
+    resources :order_items
+    resources :comments
   end
 
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   devise_scope :user do  
    get '/users/sign_out', to: 'devise/sessions#destroy'     
@@ -22,9 +24,7 @@ Rails.application.routes.draw do
 
   resources :categories
 
-  resources :products do
-    resources :order_items
-  end
+  resources :comments
 
   resources :orders
 

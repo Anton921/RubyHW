@@ -13,6 +13,7 @@ class OrdersController < ApplicationController
     def edit; end
 
     def update
+        OrderMailer.with(user: current_user, order: current_order).place_an_order.deliver_now
         @order.ordered!
         @order.update(order_params)
         redirect_to root_path
